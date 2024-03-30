@@ -11,8 +11,8 @@ const query = asyncHandler(async(req,res,next) => {
     console.log(query)
     try {
         const response = await axios.post(`http://127.0.0.1:8000/predict?name=${query}`)
-        console.log(response.data)
-        res.send(new ApiResponse(200, response.data, 'Query recieved Successfully!'))
+        const ans = response.data.prediction.response
+        res.send(new ApiResponse(200, ans, 'Query recieved Successfully!'))
     } catch (error) {
         console.log(error)
         throw new ApiError(400, 'Error in querying the model')
