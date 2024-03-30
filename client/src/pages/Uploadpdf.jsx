@@ -9,8 +9,11 @@ import Lottie from "lottie-react";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Uploadpdf({ setData }) {
+  const { docID } = useParams();
+
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
 

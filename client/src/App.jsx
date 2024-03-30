@@ -10,7 +10,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage setData={setData} />} />
-          <Route path="/upload" element={<Uploadpdf setData={setData} />} />
+          <Route
+            path="/upload/:docID"
+            element={<Uploadpdf setData={setData} />}
+          />
         </Routes>
       </Router>
     </div>
