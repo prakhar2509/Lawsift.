@@ -6,7 +6,6 @@ import { Card, Button } from "@mui/material";
 import uploadAnimation from "../assets/uploadAnimation.json";
 import lineAnimation from "../assets/lineAnimation.json";
 import Lottie from "lottie-react";
-
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
