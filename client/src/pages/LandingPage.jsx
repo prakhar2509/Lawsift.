@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import About from "../components/About";
 import Select from "../components/Select";
 import Features from "../components/Features";
+import Footer from "../components/Footer";
 
 function LandingPage({ setData }) {
   return (
@@ -12,6 +13,7 @@ function LandingPage({ setData }) {
       <Features />
       <Select />
       <About />
+      <Footer />
     </>
   );
 }
