@@ -1,20 +1,20 @@
-import mongoose from 'mongoose'
-// import { DB_Name } from '../constants.js'
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
-const connectDB = async () => {
-  try {
-    // const dbNameEncoded = encodeURIComponent(DB_Name)
-    const connectionInstance = await mongoose.connect(
-      `${process.env.DB_URI}/LawSift`
-    );
-    console.log(
-      `MongoDB connected !! DB Host : ${connectionInstance.connection.host}`
-    );
-  } catch (error) {
-    console.log("MongoDB Connection Error : ", error);
-    process.exit(1);
-  }
-};
+const app = express();
 
-export default connectDB;
+app.use(cors())
 
+app.use(express.json())
+app.use(express.urlencoded({extended : true}))
+app.use(express.static('public'))
+app.use(cookieParser())
+
+//routes
+import analysisRouter from './routes/analysis.routes.js';
+import userRouter from './routes/user.routes.js';
+app.use('/analysis',analysisRouter)
+app.use('/user', userRouter)
+
+export { app };
