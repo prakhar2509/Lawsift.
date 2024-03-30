@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { upload } from '../middlewares/multer.middlewars.js'
+import { upload } from '../middlewares/multer.middlewares.js'
 import { summary } from '../controllers/summary.controllers.js';
 
 
