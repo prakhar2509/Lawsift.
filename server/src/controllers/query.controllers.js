@@ -10,7 +10,7 @@ const query = asyncHandler(async(req,res,next) => {
     }
     console.log(query)
     try {
-        const response = await axios.post(`http://127.0.0.1:8000/predict?name=${query}`)
+        const response = await axios.post(`${process.env.IP_ADDRESS}/predict?name=${query}`)
         const ans = response.data.prediction.response
         res.send(new ApiResponse(200, ans, 'Query recieved Successfully!'))
     } catch (error) {
