@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactTyped } from "react-typed";
+import { summary } from "../../../server/src/controllers/summary.controllers";
 
 function Dashboard({ data }) {
   const [history, setHistory] = useState([]);
   const [currentQuery, setCurrentQuery] = useState("");
+  const [summary, setSummary] = useState("");
+  const [keypoints, setKeypoints] = useState("");
+  const [restrictions, setRestrictions] = useState("");
+  const [terms, setTerms] = useState("");
+  const [license, setLicensee] = useState("");
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -35,6 +42,17 @@ function Dashboard({ data }) {
   // if (!data) {
   //   return <h1 style={{ color: "white" }}>Loading...</h1>;
   // }
+
+  useEffect(() => {
+    if (data) {
+      console.log(terms);
+      setSummary(data.message);
+      setKeypoints(data.response_1);
+      setRestrictions(data.response_2);
+      setTerms(data.response_3);
+      setLicensee(data.response_4);
+    }
+  }, [data]);
 
   return (
     <div className="chat-container" style={{ backgroundColor: "#202021" }}>
@@ -86,8 +104,55 @@ function Dashboard({ data }) {
             paddingRight: "15vw",
           }}
         >
-          <p className="heading">Summary :</p>
-          <p className="answer">{data}</p>
+          <p className="heading">
+            <ReactTyped
+              strings={["Summary :"]}
+              typeSpeed={80}
+              backDelay={950}
+              showCursor={data ? false : true}
+            />
+          </p>
+          <p className="answer"> {summary}</p>
+          {data && (
+            <>
+              <p className="heading">
+                <ReactTyped
+                  strings={["Key Points :"]}
+                  typeSpeed={80}
+                  backDelay={950}
+                  showCursor={false}
+                />
+              </p>
+              <p className="answer"> {keypoints}</p>
+              <p className="heading">
+                <ReactTyped
+                  strings={["Restrictions :"]}
+                  typeSpeed={80}
+                  backDelay={950}
+                  showCursor={false}
+                />
+              </p>
+              <p className="answer"> {restrictions}</p>
+              <p className="heading">
+                <ReactTyped
+                  strings={["Terms :"]}
+                  typeSpeed={80}
+                  backDelay={950}
+                  showCursor={false}
+                />
+              </p>
+              <p className="answer"> {terms}</p>
+              <p className="heading">
+                <ReactTyped
+                  strings={["License :"]}
+                  typeSpeed={80}
+                  backDelay={950}
+                  showCursor={false}
+                />
+              </p>
+              <p className="answer"> {license}</p>
+            </>
+          )}
         </div>
         <div className="input-container">
           <input

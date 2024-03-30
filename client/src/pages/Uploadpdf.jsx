@@ -63,8 +63,13 @@ function Uploadpdf({ setData }) {
     formData.append("pdf", selectedFile);
 
     try {
+      const queryParams = {
+        id_px: "1",
+      };
       const response = await axios.post(
-        "http://localhost:3000/analysis/summary",
+        "https://lawsift.onrender.com/analysis/summary" +
+          "?" +
+          new URLSearchParams(queryParams),
         formData,
         {
           headers: {
@@ -73,7 +78,7 @@ function Uploadpdf({ setData }) {
         }
       );
       console.log("File uploaded successfully:", response.data);
-      setData(response.data.message);
+      setData(response.data.data);
     } catch (error) {
       console.error("Error uploading file:", error.response.data);
     }
@@ -122,8 +127,8 @@ function Uploadpdf({ setData }) {
             fontSize: "18px",
           }}
         >
-          Upload your PDF file here and get the summary of the document in a
-          short time!
+          Transform your document analysis experience! Simply upload your PDF
+          file here and unlock the power of instant summarization.
         </p>
       </div>
       <div>
