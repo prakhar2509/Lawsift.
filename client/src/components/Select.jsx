@@ -43,8 +43,10 @@ function Select() {
             fontSize: "18px",
           }}
         >
-          Upload your PDF file here and get the summary of the document in a
-          short time!
+          Experience the unparalleled efficiency of uploading your PDF document
+          and receiving a comprehensive summary, detailed specifications, and
+          prompt answers to all your general queries, all in a fraction of the
+          time!
         </p>
       </div>
       <div
