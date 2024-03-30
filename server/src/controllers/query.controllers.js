@@ -12,9 +12,8 @@ const query = asyncHandler(async(req,res,next) => {
     try {
         const response = await axios.post(`${process.env.IP_ADDRESS}/predict/?name=${query}`)
         const ans = response.data.prediction.response
-        if(!ans) {
-            throw new ApiError(400, 'Please provide a valid query')
-        
+        if(ans == 'ERROR') {
+            throw new ApiError(405, 'Invalid Query')
         }
         res.send(new ApiResponse(200, ans, 'Query recieved Successfully!'))
     } catch (error) {
