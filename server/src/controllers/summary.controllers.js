@@ -25,10 +25,10 @@ const summary = asyncHandler(async(req,res,next) => {
         let response
         switch(id_px) {
             case '1' :
-                response = await axios.post(`http://127.0.0.1:8000/franchise/?url=${pdf.url}`)
+                response = await axios.post(`http://${process.env.IP_ADDRESS}:8000/franchise/?url=${pdf.url}`)
                 break
             case 2 :
-                response = await axios.post(`http://127.0.0.1:8000/url`)
+                response = await axios.post(`http://${process.env.IP_ADDRESS}:8000/url`)
                 break
             case 3 :
                 break
