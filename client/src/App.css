@@ -24,7 +24,7 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #202021;
 }
 
 /* Handle */
@@ -169,8 +169,8 @@ form {
 
 /* Side Panel */
 .side-panel {
-  max-width: 270px;
-  min-width: 270px;
+  max-width: 17.5vw;
+  min-width: 17.5vw;
   padding: 20px;
 }
 
@@ -229,4 +229,17 @@ form {
 .input-container input[type="text"]:focus {
   outline: none;
   border: 2px solid #725ac1;
+}
+
+.heading {
+  color: white;
+  font-size: 2rem;
+  margin-top: 5vh;
+  font-weight: 500;
+}
+
+.answer {
+  color: white;
+  font-size: 1rem;
+  margin-top: 3vh;
 }

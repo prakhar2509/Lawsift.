@@ -25,14 +25,14 @@ function Uploadpdf({ setData }) {
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // navigate("/Dashboard");
+    navigate("/Dashboard");
 
     const formData = new FormData();
     formData.append("pdf", selectedFile);
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/analysis/summary",
+        "https://lawsift.onrender.com/analysis/summary",
         formData,
         {
           headers: {
@@ -41,7 +41,7 @@ function Uploadpdf({ setData }) {
         }
       );
       console.log("File uploaded successfully:", response.data);
-      setData(response.data.data);
+      setData(response.data.message);
     } catch (error) {
       console.error("Error uploading file:", error.response.data);
     }

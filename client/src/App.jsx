@@ -6,7 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   return (
     <div>
       <Router>
@@ -16,7 +16,7 @@ function App() {
             path="/upload/:docID"
             element={<Uploadpdf setData={setData} />}
           />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard data={data} />} />
         </Routes>
       </Router>
     </div>

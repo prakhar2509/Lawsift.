@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Dashboard() {
+function Dashboard({ data }) {
   const [history, setHistory] = useState([]);
   const [currentQuery, setCurrentQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setCurrentQuery(e.target.value);
@@ -30,6 +32,10 @@ function Dashboard() {
   // Maximum number of queries to keep in history
   const maxHistoryLength = 10;
 
+  // if (!data) {
+  //   return <h1 style={{ color: "white" }}>Loading...</h1>;
+  // }
+
   return (
     <div className="chat-container" style={{ backgroundColor: "#202021" }}>
       <div
@@ -40,7 +46,21 @@ function Dashboard() {
           fontFamily: "DM Sans",
         }}
       >
-        <h1 style={{ fontSize: "1.5rem", marginBottom: "2rem" }}>Lawsift</h1>
+        <div
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "1.5rem",
+              marginBottom: "2rem",
+              cursor: "pointer",
+            }}
+          >
+            Lawsift
+          </h1>
+        </div>
         <h2
           className="color"
           style={{ fontSize: "1rem", fontWeight: "700", color: "gray" }}
@@ -53,7 +73,22 @@ function Dashboard() {
           ))}
         </ul>
       </div>
-      <div className="chat-window" style={{ backgroundColor: "black" }}>
+
+      <div className="chat-window">
+        <div
+          style={{
+            marginTop: "5vh",
+            minHeight: "83vh",
+            maxHeight: "83vh",
+            minWidth: "56vw",
+            overflowY: "auto",
+            marginLeft: "10vw",
+            paddingRight: "15vw",
+          }}
+        >
+          <p className="heading">Summary :</p>
+          <p className="answer">{data}</p>
+        </div>
         <div className="input-container">
           <input
             type="text"
@@ -62,9 +97,7 @@ function Dashboard() {
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
           />
-          <div>
-            <ion-icon name="send-outline"></ion-icon>
-          </div>
+
           <button onClick={handleSubmit}>
             <ion-icon
               className="icon"
@@ -73,7 +106,7 @@ function Dashboard() {
                 color: "white",
                 fontSize: "24px",
                 position: "relative",
-                right: "4vw",
+                right: "3vw",
               }}
               name="send-outline"
             ></ion-icon>

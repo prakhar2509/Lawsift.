@@ -92,7 +92,7 @@ function Select() {
                 fontSize: "1.1rem",
               }}
             >
-              Agreements and Contracts
+              Franchise Agreements
             </h1>
             <p
               style={{
