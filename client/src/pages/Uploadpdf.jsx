@@ -9,17 +9,49 @@ import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Document, Page, pdfjs } from "react-pdf";
 
 function Uploadpdf({ setData }) {
-  const { docID } = useParams();
+  // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    "pdfjs-dist/build/pdf.worker.min.js",
+    import.meta.url
+  ).toString();
 
+  const { docID } = useParams();
+  const [fileName, setFileName] = useState("No selected file");
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
+  const [pdfData, setPdfData] = useState(null);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
+  const onFileLoad = (event) => {
+    const file = event.target.files[0];
+    setFileName(event.target.files[0].name);
+    const reader = new FileReader();
+
+    // reader.onload = async (e) => {
+    //   const pdfData = e.target.result;
+    //   setPdfData(pdfData);
+    // };
+
+    reader.onload = (e) => {
+      setPdfData(e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+    setSelectedFile(file);
+    console.log("Success");
+  };
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
   // Function to handle file selection
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
-    setFileName(event.target.files[0].name);
+    // setFileName(event.target.files[0].name);
   };
 
   // Function to handle form submission
@@ -32,7 +64,7 @@ function Uploadpdf({ setData }) {
 
     try {
       const response = await axios.post(
-        "https://lawsift.onrender.com/analysis/summary",
+        "http://localhost:3000/analysis/summary",
         formData,
         {
           headers: {
@@ -47,7 +79,6 @@ function Uploadpdf({ setData }) {
     }
   };
 
-  const [fileName, setFileName] = useState("No selected file");
   return (
     <>
       <div className="mt-[1.5rem]">
@@ -160,7 +191,7 @@ function Uploadpdf({ setData }) {
                     //   setImage(e.target.files[0]);
                     //   setPdf(e.target.files[0]);
                     // }}
-                    onChange={handleFileInputChange}
+                    onChange={onFileLoad}
                   />
 
                   {selectedFile ? (
@@ -242,6 +273,17 @@ function Uploadpdf({ setData }) {
             </Card>
           </div>
         </div>
+      </div>
+      <div>
+        {selectedFile && (
+          <Document
+            className="pdfcontainer"
+            file={pdfData}
+            onLoadSuccess={onDocumentLoadSuccess}
+          >
+            <Page pageNumber={pageNumber} />
+          </Document>
+        )}
       </div>
     </>
   );

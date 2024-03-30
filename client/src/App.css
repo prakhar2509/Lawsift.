@@ -243,3 +243,12 @@ form {
   font-size: 1rem;
   margin-top: 3vh;
 }
+
+.pdfcontainer {
+  min-width: "80vw";
+  min-height: "80vh";
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
