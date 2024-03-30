@@ -16,7 +16,7 @@ const summary = asyncHandler(async(req,res,next) => {
     try {
         const {url} = await uploadOnCloudinary(pdfPath)
         console.log(url)
-        const response = await axios.post('http://127.0.0.1:5000/pdf', {url})
+        const response = await axios.post('http://127.0.0.1:8000/url/', {url})
         console.log(response.data)
         res.send(new ApiResponse(200, response.data, 'Summary recieved Successfully!'))
     } catch (error) {
