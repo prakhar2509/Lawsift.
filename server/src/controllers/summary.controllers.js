@@ -14,9 +14,14 @@ const summary = asyncHandler(async(req,res,next) => {
 
     //sending the request to flask server
     try {
-        const {url} = await uploadOnCloudinary(pdfPath)
-        console.log(url)
-        const response = await axios.post('http://127.0.0.1:8000/url/', {url})
+        const pdf = await uploadOnCloudinary(pdfPath)
+        console.log(pdf.url)
+        // let config = {
+        //     method : 'post',
+        //     url : `http://127.0.0.1:8000/url/?url=${pdf.url}`,
+        //     data : pdf.url
+        // }
+        const response = await axios.post(`http://127.0.0.1:8000/url/?url=${pdf.url}`)
         console.log(response.data)
         res.send(new ApiResponse(200, response.data, 'Summary recieved Successfully!'))
     } catch (error) {
