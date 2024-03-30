@@ -11,7 +11,7 @@ const summary = asyncHandler(async(req,res,next) => {
         throw new ApiError(405, 'No file found')
     }
     console.log('pdfPath')
-    const id_px = req.query.id_px
+    const id_px = req.params.id_px
     // console.log(req.query)
     //sending the request to flask server
     try {
