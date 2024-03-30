@@ -2,20 +2,21 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js"
 import {asyncHandler} from "../utils/asynchandler.js"
 import axios from "axios"
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+
 
 const summary = asyncHandler(async(req,res,next) => {
     // Taking the pdf path and checking whether it is present
-    const pdfPath = req.file?.path;
-    if(!pdfPath) {
-        throw new ApiError(405, 'No file found')
-    }
-    console.log('pdfPath')
-    const id_px = req.params.id_px
+    // const pdfPath = req.file?.path;
+    // if(!pdfPath) {
+    //     throw new ApiError(405, 'No file found')
+    // }
+    // console.log('pdfPath')
+    const id_px = req.query.id_px
     // console.log(req.query)
     //sending the request to flask server
     try {
-        const pdf = await uploadOnCloudinary(pdfPath)
+        // const pdf = await uploadOnCloudinary(pdfPath)
+        const pdf = req.uploadResult ;
         console.log(pdf.url)
         // let config = {
         //     method : 'post',
