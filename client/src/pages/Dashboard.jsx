@@ -14,6 +14,7 @@ function Dashboard({ data }) {
   const [restrictions, setRestrictions] = useState("");
   const [terms, setTerms] = useState("");
   const [license, setLicensee] = useState("");
+  const [ans, setAns] = useState([]);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -21,10 +22,20 @@ function Dashboard({ data }) {
   };
 
   const handleSubmit = async () => {
-    const response = await axios.post("https://lawsift.onrender.com/query", {
+    const ans = await axios.post("https://lawsift.onrender.com/query", {
       query: currentQuery,
     });
-    console.log(response.data);
+    if (ans.data.data) {
+      const responseData = ans.data.data;
+      console.log(responseData);
+      setAns((prevState) => [...prevState, responseData]);
+    } else {
+      setAns((prevState) => [
+        ...prevState,
+        "Sorry, Please enter a valid query.",
+      ]);
+    }
+
     if (currentQuery.trim() !== "") {
       // Add the current query to the history
       setHistory([...history, currentQuery]);
@@ -172,6 +183,10 @@ function Dashboard({ data }) {
               <p style={{ fontSize: "1.2rem" }} className="answer">
                 Please enter your queries!
               </p>
+              {ans.map((item) => (
+                <p className="answer">{item}</p>
+              ))}
+              ;
             </>
           )}
         </div>
