@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactTyped } from "react-typed";
 import { summary } from "../../../server/src/controllers/summary.controllers";
+import dashloadingAnimation from "../assets/dashloadingAnimation.json";
+import Lottie from "lottie-react";
+import axios from "axios";
 
 function Dashboard({ data }) {
   const [history, setHistory] = useState([]);
@@ -17,7 +20,11 @@ function Dashboard({ data }) {
     setCurrentQuery(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    const response = await axios.post("https://lawsift.onrender.com/query", {
+      query: currentQuery,
+    });
+    console.log(response.data);
     if (currentQuery.trim() !== "") {
       // Add the current query to the history
       setHistory([...history, currentQuery]);
@@ -113,6 +120,17 @@ function Dashboard({ data }) {
             />
           </p>
           <p className="answer"> {summary}</p>
+          {!data && (
+            <Lottie
+              style={{
+                height: "100px",
+                position: "relative",
+                top: "20vh",
+                left: "8vw",
+              }}
+              animationData={dashloadingAnimation}
+            />
+          )}
           {data && (
             <>
               <p className="heading">
@@ -150,7 +168,10 @@ function Dashboard({ data }) {
                   showCursor={false}
                 />
               </p>
-              <p className="answer"> {license}</p>
+              <p className="answer">{license}</p>
+              <p style={{ fontSize: "1.2rem" }} className="answer">
+                Please enter your queries!
+              </p>
             </>
           )}
         </div>
