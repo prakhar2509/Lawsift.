@@ -43,15 +43,15 @@ function HeroSection() {
           </p>
           <div>
             <button
-              // onClick={() => {
-              //   const element = document.getElementById("upload");
-              //   element.scrollIntoView({ behavior: "smooth" });
-              // }}
+              onClick={() => {
+                const element = document.getElementById("select");
+                element.scrollIntoView({ behavior: "smooth" });
+              }}
               className="btn mt-[2.5rem]"
               // style={{ marginTop: "2.5rem" }}
-              onClick={() => {
-                navigate("/upload");
-              }}
+              // onClick={() => {
+              //   navigate("/upload");
+              // }}
             >
               Get Started
             </button>
