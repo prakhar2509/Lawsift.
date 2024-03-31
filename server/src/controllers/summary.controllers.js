@@ -28,17 +28,17 @@ const summary = asyncHandler(async(req,res,next) => {
             case '1' :
                 response = await axios.post(`${process.env.IP_ADDRESS}/franchise/?url=${pdf.url}`)
                 break
-            case 2 :
-                response = await axios.post(`${process.env.IP_ADDRESS}/url`)
-                break
-            case 3 :
-                break
-            case 4 :
-                break
-            case 5 :
-                break
-            case 6 :
-                break
+            // case 2 :
+            //     response = await axios.post(`${process.env.IP_ADDRESS}/url`)
+            //     break
+            // case 3 :
+            //     break
+            // case 4 :
+            //     break
+            // case 5 :
+            //     break
+            // case 6 :
+            //     break
             default : 
                 throw new ApiError(405, 'Invalid Document type')
         }
