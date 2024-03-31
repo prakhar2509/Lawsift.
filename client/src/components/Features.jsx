@@ -53,7 +53,6 @@ function Features() {
           marginTop: "6rem",
           display: "flex",
           justifyContent: "space-evenly",
-          marginBottom: "3vh",
         }}
       >
         <Card

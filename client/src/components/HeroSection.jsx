@@ -25,6 +25,7 @@ function HeroSection() {
             <span>Your Personal AI Assistant for</span>{" "}
             <div style={{ content: "transparency", color: "#6E58F2" }}>
               <ReactTyped
+                className="text-primary"
                 strings={["Analyzing", "Summarizing"]}
                 typeSpeed={80}
                 loop

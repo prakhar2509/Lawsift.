@@ -43,10 +43,8 @@ function Select() {
             fontSize: "18px",
           }}
         >
-          Experience the unparalleled efficiency of uploading your PDF document
-          and receiving a comprehensive summary, detailed specifications, and
-          prompt answers to all your general queries, all in a fraction of the
-          time!
+          Upload your PDF file here and get the summary of the document in a
+          short time!
         </p>
       </div>
       <div
@@ -92,7 +90,7 @@ function Select() {
                 fontSize: "1.1rem",
               }}
             >
-              Franchise Agreements
+              Agreements and Contracts
             </h1>
             <p
               style={{
