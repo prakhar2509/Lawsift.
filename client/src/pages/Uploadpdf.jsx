@@ -9,49 +9,49 @@ import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Document, Page, pdfjs } from "react-pdf";
+// import { Document, Page, pdfjs } from "react-pdf";
 
 function Uploadpdf({ setData }) {
   // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    "pdfjs-dist/build/pdf.worker.min.js",
-    import.meta.url
-  ).toString();
+  // pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  //   "pdfjs-dist/build/pdf.worker.min.js",
+  //   import.meta.url
+  // ).toString();
 
   const { docID } = useParams();
   const [fileName, setFileName] = useState("No selected file");
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [pdfData, setPdfData] = useState(null);
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pdfData, setPdfData] = useState(null);
+  // const [numPages, setNumPages] = useState(null);
+  // const [pageNumber, setPageNumber] = useState(1);
 
-  const onFileLoad = (event) => {
-    const file = event.target.files[0];
-    setFileName(event.target.files[0].name);
-    const reader = new FileReader();
+  // const onFileLoad = (event) => {
+  //   const file = event.target.files[0];
+  //   setFileName(event.target.files[0].name);
+  //   const reader = new FileReader();
 
-    // reader.onload = async (e) => {
-    //   const pdfData = e.target.result;
-    //   setPdfData(pdfData);
-    // };
+  // reader.onload = async (e) => {
+  //   const pdfData = e.target.result;
+  //   setPdfData(pdfData);
+  // };
 
-    reader.onload = (e) => {
-      setPdfData(e.target.result);
-    };
+  //   reader.onload = (e) => {
+  //     setPdfData(e.target.result);
+  //   };
 
-    reader.readAsDataURL(file);
-    setSelectedFile(file);
-    console.log("Success");
-  };
+  //   reader.readAsDataURL(file);
+  //   setSelectedFile(file);
+  //   console.log("Success");
+  // };
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
+  // const onDocumentLoadSuccess = ({ numPages }) => {
+  //   setNumPages(numPages);
+  // };
   // Function to handle file selection
   const handleFileInputChange = (event) => {
     setSelectedFile(event.target.files[0]);
-    // setFileName(event.target.files[0].name);
+    setFileName(event.target.files[0].name);
   };
 
   // Function to handle form submission
@@ -196,7 +196,7 @@ function Uploadpdf({ setData }) {
                     //   setImage(e.target.files[0]);
                     //   setPdf(e.target.files[0]);
                     // }}
-                    onChange={onFileLoad}
+                    onChange={handleFileInputChange}
                   />
 
                   {selectedFile ? (
@@ -279,7 +279,7 @@ function Uploadpdf({ setData }) {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         {selectedFile && (
           <Document
             className="pdfcontainer"
@@ -289,7 +289,7 @@ function Uploadpdf({ setData }) {
             <Page pageNumber={pageNumber} />
           </Document>
         )}
-      </div>
+      </div> */}
     </>
   );
 }
